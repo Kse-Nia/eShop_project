@@ -1,13 +1,34 @@
-import * as React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
 import "./App.css";
-require("dotenv").config();
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import errorPage from "./Pages/errorPage";
+import Cart from "./Pages/Cart";
+import Home from "./Pages/Home";
+import Products from "./Pages/Products";
 
 function App() {
   return (
-    <ChakraProvider>
-      <h1>Hello</h1>
-    </ChakraProvider>
+    <div className="App">
+      <RouterProvider
+        router={createBrowserRouter([
+          {
+            path: "/",
+            element: <Home />,
+          },
+          {
+            path: "/items",
+            element: <Products />,
+          },
+          {
+            path: "/cart",
+            element: <Cart />,
+          },
+          {
+            path: "*",
+            element: <errorPage />,
+          },
+        ])}
+      />
+    </div>
   );
 }
 
