@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 const itemCard = (props) => {
+    const data 
   return (
     <Card maxW="sm">
       <CardBody>
