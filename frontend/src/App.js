@@ -1,35 +1,30 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
+import { Counter } from "./features/counter/Counter";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import errorPage from "./Pages/errorPage";
-import Cart from "./Pages/Cart";
+
 import Home from "./Pages/Home";
-import Products from "./Pages/Products";
+import Register from "./Pages/Register";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/registration",
+    element: <Register />,
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <RouterProvider
-        router={createBrowserRouter([
-          {
-            path: "/",
-            element: <Home />,
-          },
-          {
-            path: "/items",
-            element: <Products />,
-          },
-          {
-            path: "/cart",
-            element: <Cart />,
-          },
-          {
-            path: "*",
-            element: <errorPage />,
-          },
-        ])}
-      />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
