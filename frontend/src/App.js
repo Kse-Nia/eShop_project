@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 
-import Layout from "./Layout";
+import Layout from "./Pages/Layout";
 import Home from "./Pages/Home";
 import Register from "./Pages/Register";
 import Products from "./Pages/Products";
