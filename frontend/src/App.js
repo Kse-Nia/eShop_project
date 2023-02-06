@@ -3,23 +3,25 @@ import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
+  createRoutesFromElements,
   Route,
-  Link,
 } from "react-router-dom";
-import { Counter } from "./features/counter/Counter";
 import "./App.css";
 
+import Layout from "./Layout";
 import Home from "./Pages/Home";
 import Register from "./Pages/Register";
+import Products from "./Pages/Products";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/registration",
-    element: <Register />,
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "registration", element: <Register /> },
+      { path: "/products", element: <Products /> },
+      { path: "*", element: <Home /> },
+    ],
   },
 ]);
 
