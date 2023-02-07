@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Container } from "@chakra-ui/react";
+import ItemCard from "../Components/itemCard";
+import { items } from "../items";
 
 const Products = () => {
+  //console.log(items);
   return (
-    <div>
-      <h1>Produits en vente</h1>
-    </div>
+    <Container>
+      <ItemCard props={items} />
+    </Container>
   );
 };
 

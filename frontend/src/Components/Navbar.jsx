@@ -16,13 +16,14 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
-import { ArrowUpDownIcon } from "@chakra-ui/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
   const [mobileVersion] = useMediaQuery("(max-width: 850px)");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
+  // Navigation links
   const NavLinks = () => (
     <ul style={{ display: "flex" }}>
       <li>
@@ -51,7 +52,7 @@ const Navbar = () => {
         <Spacer />
         <li>
           <ButtonGroup>
-            <Button colorScheme="teal" size="sm">
+            <Button colorScheme="teal" size="sm" mr={1} ml={2}>
               <NavLink to="/login">Se connecter</NavLink>
             </Button>
           </ButtonGroup>
@@ -72,7 +73,7 @@ const Navbar = () => {
           <nav>
             <>
               <Button ref={btnRef} variant="ghost" onClick={onOpen}>
-                <ArrowUpDownIcon />
+                <HamburgerIcon />
               </Button>
               <Flex>
                 <Drawer
@@ -108,10 +109,12 @@ const Navbar = () => {
               padding: ".5rem",
             }}
           >
-            <Box mr={6}>
+            <Box justifyContent="flex-end" mr={6}>
               <Image src={Logo} alt="logo" maxWidth="50" />
             </Box>
-            <NavLinks />
+            <Flex>
+              <NavLinks />
+            </Flex>
           </nav>
         </Flex>
       )}
