@@ -1,18 +1,34 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const secretToken = process.env.TOKEN_SECRET;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
 // Prisma Config
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function main() {
-  // ... you will write your Prisma Client queries here
-}
+  /*   const password = "password123";
+  const hash = await bcrypt.hash(password, 10);
 
+  const newUser = await prisma.user.create({
+    data: {
+      name: "Yaroslav",
+      email: "yaroslav@outlook.com",
+      password: hash,
+    },
+  }); */
+}
 main()
   .then(async () => {
     app.listen(PORT, () => {
@@ -28,7 +44,5 @@ main()
 // Routes
 const userRoutes = require("./routes/auth.routes");
 app.use("/api", userRoutes);
-/* const authRoutes = require("./routes/auth.routes");
-app.use("/api/auth", authRoutes); */
 
 module.exports = app;
