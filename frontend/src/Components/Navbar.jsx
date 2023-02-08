@@ -98,7 +98,7 @@ const Navbar = () => {
           </li>
         </Box>
       )}
-      <style jsx>
+      <style jsx="true">
         {`
           @media (max-width: 850px) {
             ul {
