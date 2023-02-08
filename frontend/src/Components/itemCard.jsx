@@ -17,7 +17,12 @@ const ItemCard = (props) => {
   return (
     <Card m={2}>
       <CardBody>
-        <Image src={props.image} alt="image produit" borderRadius="lg" />
+        <Image
+          src={props.image}
+          objectFit="contain"
+          alt="image produit"
+          borderRadius="lg"
+        />
         <Stack mt="6" spacing="3">
           <Heading size="md">{props.name}</Heading>
           <Text>{props.description}</Text>

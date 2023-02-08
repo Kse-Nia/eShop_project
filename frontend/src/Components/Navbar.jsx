@@ -85,18 +85,23 @@ const Navbar = () => {
           </li>
         </Box>
       )}
+      <style jsx>
+        {`
+          @media (max-width: 850px) {
+            ul {
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+        `}
+      </style>
     </ul>
   );
 
   return (
     <Box bg="white" width="100vw">
       {mobileVersion ? (
-        <Flex
-          display="flex"
-          flexDirection="column"
-          alignContent={"center"}
-          justify="space-between"
-        >
+        <Flex display="flex" flexDirection="column">
           <nav>
             <>
               <Button ref={btnRef} variant="ghost" onClick={onOpen}>
@@ -112,7 +117,7 @@ const Navbar = () => {
                   <DrawerOverlay />
                   <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Menu</DrawerHeader>
+                    <DrawerHeader>Navigation</DrawerHeader>
                     <NavLinks />
                   </DrawerContent>
                 </Drawer>
