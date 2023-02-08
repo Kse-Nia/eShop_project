@@ -9,17 +9,21 @@ import {
 
 import Layout from "./Pages/Layout";
 import Home from "./Pages/Home";
-import Register from "./Pages/Register";
+import Login from "./Pages/Login";
+import Profile from "./Pages/Profile";
 import Products from "./Pages/Products";
+import Basket from "./Pages/Basket";
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "registration", element: <Register /> },
+      { path: "/login", element: <Login /> },
+      { path: "/userprofile", element: <Profile /> },
       { path: "/products", element: <Products /> },
-      { path: "*", element: <Home /> },
+      { path: "/mybasket", element: <Basket /> },
+      { path: "/*", element: <Home /> },
     ],
   },
 ]);

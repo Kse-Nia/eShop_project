@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import {
-  Container,
-  Flex,
   Card,
-  Grid,
   CardBody,
   CardFooter,
   Divider,
@@ -17,57 +14,32 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 
 const ItemCard = (props) => {
-  const plants = props.props;
-
   return (
-    <Container>
-      <div>
-        <Text fontSize="2em" textAlign="center">
-          Plantes disponibles
-        </Text>
-      </div>
-      <div>
-        {plants.length > 0 ? (
-          plants.map((plant) => (
-            <div key={plants.id}>
-              <Card width="90%" marginBottom={6}>
-                <CardBody>
-                  <Image
-                    src={plant.image}
-                    alt="image produit"
-                    borderRadius="lg"
-                  />
-                  <Stack mt="6" spacing="3">
-                    <Heading size="md">{plant.name}</Heading>
-                    <Text>{plant.description}</Text>
-                    <Text color="blue.600" fontSize="2xl" textAlign="end">
-                      {plant.price} €
-                    </Text>
-                  </Stack>
-                </CardBody>
-                <Divider />
-                <CardFooter>
-                  <ButtonGroup spacing="2">
-                    <Button
-                      variant="solid"
-                      colorScheme="blue"
-                      //onClick={addToBasket}
-                    >
-                      <AddIcon boxSize={3} m={2} />
-                      Ajouter
-                    </Button>
-                  </ButtonGroup>
-                </CardFooter>
-              </Card>
-            </div>
-          ))
-        ) : (
-          <Text fontSize="2em" textAlign="center">
-            Aucune plante disponible pour le moment :(
+    <Card m={2}>
+      <CardBody>
+        <Image src={props.image} alt="image produit" borderRadius="lg" />
+        <Stack mt="6" spacing="3">
+          <Heading size="md">{props.name}</Heading>
+          <Text>{props.description}</Text>
+          <Text as="b" color="blue.600" fontSize="2xl" textAlign="end">
+            {props.price} €
           </Text>
-        )}
-      </div>
-    </Container>
+        </Stack>
+      </CardBody>
+      <Divider />
+      <CardFooter>
+        <ButtonGroup spacing="2">
+          <Button
+            variant="solid"
+            sx={{ backgroundColor: "#1E643F", color: "white" }}
+            //onClick={addToBasket}
+          >
+            <AddIcon boxSize={3} m={2} />
+            Ajouter au panier
+          </Button>
+        </ButtonGroup>
+      </CardFooter>
+    </Card>
   );
 };
 

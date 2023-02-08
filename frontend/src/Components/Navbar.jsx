@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../Assets/plant.png";
 import {
   Flex,
@@ -19,16 +20,27 @@ import {
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
+  const navigate = useNavigate;
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const [mobileVersion] = useMediaQuery("(max-width: 850px)");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
+  console.log(user);
+
+  // LogOut function
+  function clearStorage() {
+    window.localStorage.clear();
+    window.location.reload();
+    navigate("/");
+  }
   // Navigation links
   const NavLinks = () => (
-    <ul style={{ display: "flex" }}>
+    <ul style={{ display: "flex", fontWeight: "bold" }}>
       <li>
         <Box mr={6}>
-          <NavLink to="/home">Accueil</NavLink>
+          <NavLink to="/">Accueil</NavLink>
         </Box>
       </li>
       <li>
@@ -36,33 +48,48 @@ const Navbar = () => {
           <NavLink to="/products">Produits</NavLink>
         </Box>
       </li>
-      <li>
-        <Box mr={6}>
-          <NavLink to="/account">Mon Compte</NavLink>
+
+      {user ? (
+        <>
+          <Box mr={6}>
+            <li>
+              <NavLink to="/userprofile">Mon Compte</NavLink>
+            </li>
+          </Box>
+          <ButtonGroup>
+            <Button
+              sx={{ backgroundColor: "#1E643F", color: "white" }}
+              size="sm"
+              mr={1}
+              ml={2}
+              onClick={clearStorage}
+            >
+              Se déconnecter
+            </Button>
+          </ButtonGroup>
+        </>
+      ) : (
+        <Box style={{ display: "flex", flexDirection: "row" }}>
+          <Spacer />
+          <li>
+            <ButtonGroup>
+              <Button
+                sx={{ backgroundColor: "#1E643F", color: "white" }}
+                size="sm"
+                mr={1}
+                ml={2}
+              >
+                <NavLink to="/login">Se connecter</NavLink>
+              </Button>
+            </ButtonGroup>
+          </li>
         </Box>
-      </li>
-      <Box style={{ display: "flex", flexDirection: "row" }}>
-        <li>
-          <ButtonGroup>
-            <Button colorScheme="teal" size="sm">
-              <NavLink to="/register">S'inscrire</NavLink>
-            </Button>
-          </ButtonGroup>
-        </li>
-        <Spacer />
-        <li>
-          <ButtonGroup>
-            <Button colorScheme="teal" size="sm" mr={1} ml={2}>
-              <NavLink to="/login">Se connecter</NavLink>
-            </Button>
-          </ButtonGroup>
-        </li>
-      </Box>
+      )}
     </ul>
   );
 
   return (
-    <Box width="100vw">
+    <Box bg="white" width="100vw">
       {mobileVersion ? (
         <Flex
           display="flex"
@@ -110,7 +137,11 @@ const Navbar = () => {
             }}
           >
             <Box justifyContent="flex-end" mr={6}>
-              <Image src={Logo} alt="logo" maxWidth="50" />
+              <Image
+                src={Logo}
+                alt="logo de l'entreprise représentant une plante à trois feuilles"
+                maxWidth="50"
+              />
             </Box>
             <Flex>
               <NavLinks />

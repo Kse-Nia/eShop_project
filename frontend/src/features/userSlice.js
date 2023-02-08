@@ -6,7 +6,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   user: user ? user : null,
-  basket: [],
+  cart: [],
   isError: false,
   isSuccess: false,
   message: "",
@@ -15,9 +15,14 @@ const initialState = {
 // Login user
 export const login = createAsyncThunk("/login", async (user, thunkAPI) => {
   try {
-    return await userService.login(user);
+    const log = console.log("user", user);
+    const response = await userService.login(user);
+    return [response.data, log];
   } catch (error) {
-    const message = console.error(error);
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -39,12 +44,10 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
-        state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
         state.user = null;
