@@ -16,8 +16,10 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Icon,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { BsCart4 } from "react-icons/bs";
 
 const Navbar = () => {
   const navigate = useNavigate;
@@ -57,6 +59,17 @@ const Navbar = () => {
             </li>
           </Box>
           <ButtonGroup>
+            <NavLink to="/mybasket">
+              <Button
+                sx={{ backgroundColor: "#1E643F", color: "white" }}
+                size="sm"
+                mr={1}
+                ml={2}
+              >
+                <Icon mr={2} as={BsCart4} />
+                Panier
+              </Button>
+            </NavLink>
             <Button
               sx={{ backgroundColor: "#1E643F", color: "white" }}
               size="sm"

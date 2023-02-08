@@ -7,9 +7,6 @@ import {
   Container,
   FormControl,
   FormLabel,
-  Form,
-  FormErrorMessage,
-  FormHelperText,
   Input,
   Button,
   Card,
@@ -32,6 +29,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess || user) {
+      window.reload();
       navigate("/userprofile");
     } else if (isError) {
       alert(message);

@@ -20,7 +20,7 @@ const Products = () => {
         Plantes disponibles
       </Text>
       {mobileQuery ? (
-        <Flex display="flex" flexDirection="column">
+        <SimpleGrid columns={3} minChildWidth="50%" m={5} py={2}>
           {items.length > 0 ? (
             items.map((item) => <ItemCard key={item.id} {...item} />)
           ) : (
@@ -29,9 +29,9 @@ const Products = () => {
               <p>Revenez plus tard </p>
             </>
           )}
-        </Flex>
+        </SimpleGrid>
       ) : (
-        <SimpleGrid columns={2} minChildWidth="30%" py={3} m={8}>
+        <SimpleGrid columns={3} minChildWidth="30%" py={3}>
           {items.length > 0 ? (
             items.map((item) => <ItemCard key={item.id} {...item} />)
           ) : (
