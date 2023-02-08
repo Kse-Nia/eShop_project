@@ -19,16 +19,6 @@ import { AddIcon } from "@chakra-ui/icons";
 const ItemCard = (props) => {
   const plants = props.props;
 
-  const addToBasket = (plant) => {
-    const plantToAdd = {
-      id: plant.id,
-      name: plant.name,
-      price: plant.price,
-      quantity: 1,
-    };
-    console.log(plantToAdd);
-  };
-
   return (
     <Container>
       <div>
@@ -36,38 +26,40 @@ const ItemCard = (props) => {
           Plantes disponibles
         </Text>
       </div>
-      <div key={plants.id}>
+      <div>
         {plants.length > 0 ? (
           plants.map((plant) => (
-            <Card width="90%" marginBottom={6}>
-              <CardBody>
-                <Image
-                  src={plant.image}
-                  alt="image produit"
-                  borderRadius="lg"
-                />
-                <Stack mt="6" spacing="3">
-                  <Heading size="md">{plant.name}</Heading>
-                  <Text>{plant.description}</Text>
-                  <Text color="blue.600" fontSize="2xl" textAlign="end">
-                    {plant.price} €
-                  </Text>
-                </Stack>
-              </CardBody>
-              <Divider />
-              <CardFooter>
-                <ButtonGroup spacing="2">
-                  <Button
-                    variant="solid"
-                    colorScheme="blue"
-                    onClick={addToBasket}
-                  >
-                    <AddIcon boxSize={3} m={2} />
-                    Ajouter
-                  </Button>
-                </ButtonGroup>
-              </CardFooter>
-            </Card>
+            <div key={plants.id}>
+              <Card width="90%" marginBottom={6}>
+                <CardBody>
+                  <Image
+                    src={plant.image}
+                    alt="image produit"
+                    borderRadius="lg"
+                  />
+                  <Stack mt="6" spacing="3">
+                    <Heading size="md">{plant.name}</Heading>
+                    <Text>{plant.description}</Text>
+                    <Text color="blue.600" fontSize="2xl" textAlign="end">
+                      {plant.price} €
+                    </Text>
+                  </Stack>
+                </CardBody>
+                <Divider />
+                <CardFooter>
+                  <ButtonGroup spacing="2">
+                    <Button
+                      variant="solid"
+                      colorScheme="blue"
+                      //onClick={addToBasket}
+                    >
+                      <AddIcon boxSize={3} m={2} />
+                      Ajouter
+                    </Button>
+                  </ButtonGroup>
+                </CardFooter>
+              </Card>
+            </div>
           ))
         ) : (
           <Text fontSize="2em" textAlign="center">
