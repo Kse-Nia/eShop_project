@@ -13,19 +13,14 @@ import {
   Image,
   ButtonGroup,
   Button,
+  Skeleton,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 
 const ItemCard = (item) => {
   const dispatch = useDispatch();
   const [add, setAdd] = useState(false);
-
-  /* useEffect(() => {
-    if (add) {
-      // Reload page
-      window.location.reload();
-    }
-  }, [add]); */
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleAdd = (id) => {
     dispatch(addToBasket(item));
@@ -42,11 +37,13 @@ const ItemCard = (item) => {
           borderRadius="lg"
         />
         <Stack mt="6" spacing="3">
-          <Heading size="md">{item.name}</Heading>
-          <Text>{item.description}</Text>
-          <Text as="b" color="blue.600" fontSize="2xl" textAlign="end">
-            {item.price} €
-          </Text>
+          <Skeleton isLoaded={!isLoaded}>
+            <Heading size="md">{item.name}</Heading>
+            <Text>{item.description}</Text>
+            <Text as="b" color="blue.600" fontSize="2xl" textAlign="end">
+              {item.price} €
+            </Text>
+          </Skeleton>
         </Stack>
       </CardBody>
       <Divider />

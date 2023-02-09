@@ -34,13 +34,15 @@ const Basket = () => {
   const dispatch = useDispatch();
   const myCart = useSelector((state) => state.cart);
   const [alert, setAlert] = useState(false);
-
   const [cartTotalQ, setCartTotalQ] = useState(0);
   const [cartTotalP, setCartTotalP] = useState(0);
 
-  const cartItems = myCart.cartItems;
+  //const cartItems = myCart.cartItems;
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem("cartItems")) || []
+  );
+
   console.log("items", cartItems);
-  //const basket = localStorage.getItem("basket");
 
   useEffect(() => {
     dispatch(getTotals());
@@ -61,37 +63,44 @@ const Basket = () => {
 
   return (
     <Container>
-      <Heading variant="h1" textAlign="center" m={4}>
+      <Heading as="h1" variant="h1" textAlign="center" m={4}>
         Mon panier
       </Heading>
       <Box>
-        <Card minW="60vw" minH="50vh">
+        <Card>
           {cartItems && cartItems.length > 0 ? (
-            cartItems.map((products) => (
-              <div key={products.id}>
-                <TableContainer>
-                  <Table variant="simple">
-                    <Thead>
-                      <Tr>
-                        <Th>Produit : </Th>
-                        <Th>Image</Th>
-                        <Th>Prix</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td>{products.name}</Td>
-                        <Td>{products.image}</Td>
-                        <Td isNumeric>{products.price}</Td>
-                      </Tr>
-                    </Tbody>
-                    <Tfoot>
-                      <Tr>{handleTotal}</Tr>
-                    </Tfoot>
-                  </Table>
-                </TableContainer>
-              </div>
-            ))
+            <TableContainer>
+              <Table variant="striped">
+                <Thead>
+                  <Tr>
+                    <Th>Produit : </Th>
+                    <Th>Image</Th>
+                    <Th>Prix</Th>
+                    <Th>Quantité</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {cartItems.map((products) => (
+                    <Tr key={products.id}>
+                      <Td>{products.name}</Td>
+                      <Td>
+                        <Image
+                          src={products.image}
+                          objectFit="contain"
+                          alt="image produit"
+                          borderRadius="lg"
+                        />
+                      </Td>
+                      <Td isNumeric>{products.price}</Td>
+                      <Td>{products.cartQuantity}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+                <Tfoot>
+                  <Tr>{handleTotal}</Tr>
+                </Tfoot>
+              </Table>
+            </TableContainer>
           ) : (
             <Box display="flex" justifyContent="center" flexDirection="column">
               <Text textAlign="center">Aucun article pour le moment..</Text>
@@ -105,7 +114,7 @@ const Basket = () => {
               handleClearCart();
               setAlert(true);
             }}
-            sx={{ backgroundColor: "red", color: "white" }}
+            sx={{ backgroundColor: "#BF0202", color: "white" }}
             size="sm"
             m={5}
           >

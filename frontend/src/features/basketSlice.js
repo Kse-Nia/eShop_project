@@ -12,6 +12,9 @@ const basketSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    resetData: (state) => {
+      state.data = [];
+    },
     // Ajout produit au panier
     addToBasket(state, action) {
       const existingIndex = state.cartItems.findIndex(
