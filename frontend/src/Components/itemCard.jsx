@@ -13,9 +13,11 @@ import {
   Image,
   ButtonGroup,
   Button,
+  Icon,
   Skeleton,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
+import { BsCartPlus } from "react-icons/bs";
 
 const ItemCard = (item) => {
   const dispatch = useDispatch();
@@ -28,14 +30,9 @@ const ItemCard = (item) => {
   };
 
   return (
-    <Card m={2}>
+    <Card shadow="md" m={2}>
       <CardBody>
-        <Image
-          src={item.image}
-          objectFit="contain"
-          alt="image produit"
-          borderRadius="lg"
-        />
+        <Image src={item.image} objectFit="contain" alt="" borderRadius="lg" />
         <Stack mt="6" spacing="3">
           <Skeleton isLoaded={!isLoaded}>
             <Heading size="md">{item.name}</Heading>
@@ -48,15 +45,14 @@ const ItemCard = (item) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
+        <ButtonGroup>
           <Button
             variant="solid"
             sx={{ backgroundColor: "#1E643F", color: "white" }}
-            //onClick={addToBasket}
             onClick={() => dispatch(handleAdd(item))}
           >
-            <AddIcon boxSize={3} m={2} />
-            Ajouter au panier
+            <Icon mr={2} as={BsCartPlus} />
+            Acheter
           </Button>
         </ButtonGroup>
       </CardFooter>

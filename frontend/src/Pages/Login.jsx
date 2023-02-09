@@ -23,18 +23,16 @@ const Login = () => {
     password: "",
   });
   const { email, password } = formData;
-  const { user, basket, isError, isSuccess, message } = useSelector(
+  const { user, isError, isSuccess, message } = useSelector(
     (state) => state.user
   );
 
   useEffect(() => {
     if (isSuccess || user) {
-      window.reload();
+      window.location.reload();
       navigate("/userprofile");
-    } else if (isError) {
-      alert(message);
     }
-  }, [user, basket, isError, isSuccess, message, navigate, dispatch]);
+  }, [user, isError, isSuccess, message, dispatch, navigate]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({

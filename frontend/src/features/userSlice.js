@@ -6,7 +6,6 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   user: user ? user : null,
-  cart: [],
   isError: false,
   isSuccess: false,
   message: "",
@@ -15,9 +14,8 @@ const initialState = {
 // Login user
 export const login = createAsyncThunk("/login", async (user, thunkAPI) => {
   try {
-    const log = console.log("user", user);
     const response = await userService.login(user);
-    return [response.data, log];
+    return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||

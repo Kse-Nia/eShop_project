@@ -65,24 +65,7 @@ const basketSlice = createSlice({
       });
     },
     // Total panier
-    getTotals(state, action) {
-      let { total, quantity } = state.cartItems.reduce(
-        (cartTotal, cartItem) => {
-          const { price, cartQuantity } = cartItem;
-          const itemTotal = price * cartQuantity;
-          cartTotal.total += itemTotal;
-          cartTotal.quantity += cartQuantity;
-          return cartTotal;
-        },
-        {
-          total: 0,
-          quantity: 0,
-        }
-      );
-      total = parseFloat(total.toFixed(2));
-      state.cartTotalQuantity = quantity;
-      state.cartTotalAmount = total;
-    },
+
     // Supprimer totalement panier
     clearBasket(state, action) {
       state.cartItems = [];
@@ -92,12 +75,7 @@ const basketSlice = createSlice({
   },
 });
 
-export const {
-  addToBasket,
-  decreaseBasket,
-  removeFromBasket,
-  getTotals,
-  clearBasket,
-} = basketSlice.actions;
+export const { addToBasket, decreaseBasket, removeFromBasket, clearBasket } =
+  basketSlice.actions;
 
 export default basketSlice.reducer;

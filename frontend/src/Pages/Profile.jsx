@@ -30,10 +30,20 @@ const Profile = () => {
         textAlign="center"
         m={5}
       >
-        <Heading>Mon Compte</Heading>
+        <Heading as="h1" mt={4}>
+          Mon Compte utilisateur
+        </Heading>
         <Box m={7}>
           <Text>Prénom: {user.name}</Text>
           <Text>Email : {user.email}</Text>
+          <ButtonGroup mt={5}>
+            <Button sx={{ backgroundColor: "#1E643F", color: "white" }}>
+              Modifier mes données
+            </Button>
+            <Button sx={{ backgroundColor: "#BF0202", color: "white" }}>
+              Supprimer le compte
+            </Button>
+          </ButtonGroup>
         </Box>
       </Card>
     </div>

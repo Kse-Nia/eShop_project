@@ -6,6 +6,7 @@ import {
   Flex,
   SimpleGrid,
   Text,
+  Heading,
 } from "@chakra-ui/react";
 import ItemCard from "../Components/itemCard";
 import { items } from "../items";

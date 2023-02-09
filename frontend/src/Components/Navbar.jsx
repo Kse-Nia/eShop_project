@@ -33,19 +33,21 @@ const Navbar = () => {
   function clearStorage() {
     window.localStorage.clear();
     window.location.reload();
-    navigate("/");
+    navigate("/products");
   }
   // Navigation links
   const NavLinks = () => (
-    <ul style={{ display: "flex", fontWeight: "bold" }}>
+    <ul
+      style={{
+        display: "flex",
+        fontWeight: "500",
+        fontFamily: "Poppins, sans-serif",
+      }}
+    >
+      <li></li>
       <li>
-        <Box mr={6}>
-          <NavLink to="/">Accueil</NavLink>
-        </Box>
-      </li>
-      <li>
-        <Box mr={6}>
-          <NavLink to="/products">Produits</NavLink>
+        <Box mr={8}>
+          <NavLink to="/products">Catalogue produits</NavLink>
         </Box>
       </li>
 
@@ -155,7 +157,7 @@ const Navbar = () => {
             <Box justifyContent="flex-end" mr={6}>
               <Image
                 src={Logo}
-                alt="logo de l'entreprise représentant une plante à trois feuilles"
+                alt="logo de l'entreprise représentant une branche à trois feuilles"
                 maxWidth="50"
               />
             </Box>
