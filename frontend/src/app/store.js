@@ -5,6 +5,6 @@ import basketReducer from "../features/basketSlice";
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    basket: basketReducer,
+    cart: basketReducer,
   },
 });

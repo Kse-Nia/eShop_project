@@ -29,8 +29,6 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  console.log(user);
-
   // LogOut function
   function clearStorage() {
     window.localStorage.clear();

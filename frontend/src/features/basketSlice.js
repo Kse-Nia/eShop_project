@@ -1,73 +1,100 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  cart: [],
-  items: [],
-  totalQuantity: 0,
-  totalPrice: 0,
+  cartItems: localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [],
+  cartTotalQuantity: 0,
+  cartTotalAmount: 0,
 };
 
-const cartSlice = createSlice({
-  name: "basket",
+const basketSlice = createSlice({
+  name: "cart",
   initialState,
   reducers: {
-    addToBasket: (state, action) => {
-      let find = state.cart.findIndex((item) => item.id === action.payload.id);
-      if (find >= 0) {
-        state.cart[find].quantity += 1;
+    // Ajout produit au panier
+    addToBasket(state, action) {
+      const existingIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (existingIndex >= 0) {
+        state.cartItems[existingIndex] = {
+          ...state.cartItems[existingIndex],
+          cartQuantity: state.cartItems[existingIndex].cartQuantity + 1,
+        };
+        console.log("quantité augmentée");
       } else {
-        state.cart.push(action.payload);
+        let tempProductItem = { ...action.payload, cartQuantity: 1 };
+        state.cartItems.push(tempProductItem);
+        console.log("produit ajouté");
       }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
-    getTotal: (state) => {
-      let { totalPrice, totalQuantity } = state.cart.reduce(
-        (totalBasket, itemBasket) => {
-          console.log("totalBasket", totalBasket);
-          console.log("itemBasket", itemBasket);
-          const { price, quantity } = itemBasket;
-          console.log(price, quantity);
-          const itemTotal = price * quantity;
-          totalBasket.totalPrice += itemTotal;
-          totalBasket.totalQuantity += quantity;
-          return totalBasket;
+    // Réduire quantité
+    decreaseBasket(state, action) {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (state.cartItems[itemIndex].cartQuantity > 1) {
+        state.cartItems[itemIndex].cartQuantity -= 1;
+        console.log("quantité réduite");
+      } else if (state.cartItems[itemIndex].cartQuantity === 1) {
+        const nextCartItems = state.cartItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.cartItems = nextCartItems;
+        console.log("produit sup");
+      }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    },
+    // Supprimer du panier
+    removeFromBasket(state, action) {
+      state.cartItems.map((cartItem) => {
+        if (cartItem.id === action.payload.id) {
+          const nextCartItems = state.cartItems.filter(
+            (item) => item.id !== cartItem.id
+          );
+          state.cartItems = nextCartItems;
+          console.log("error");
+        }
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        return state;
+      });
+    },
+    // Total panier
+    getTotals(state, action) {
+      let { total, quantity } = state.cartItems.reduce(
+        (cartTotal, cartItem) => {
+          const { price, cartQuantity } = cartItem;
+          const itemTotal = price * cartQuantity;
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += cartQuantity;
+          return cartTotal;
         },
         {
-          totalPrice: 0,
-          totalQuantity: 0,
+          total: 0,
+          quantity: 0,
         }
       );
-      state.totalPrice = parseInt(totalPrice.toFixed(2));
-      state.totalQuantity = totalQuantity;
+      total = parseFloat(total.toFixed(2));
+      state.cartTotalQuantity = quantity;
+      state.cartTotalAmount = total;
     },
-
-    removeItem: (state, action) => {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
-    },
-    increaseItemQuantity: (state, action) => {
-      state.basket = state.basket.map((item) => {
-        if (item.id === action.payload) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
-    },
-    decreaseItemQuantity: (state, action) => {
-      state.basket = state.basket.map((item) => {
-        if (item.id === action.payload) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      });
+    // Supprimer totalement panier
+    clearBasket(state, action) {
+      state.cartItems = [];
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      console.log("panier supprimé");
     },
   },
 });
 
 export const {
   addToBasket,
-  getTotal,
-  removeItem,
-  decreaseItemQuantity,
-  increaseItemQuantity,
-} = cartSlice.actions;
+  decreaseBasket,
+  removeFromBasket,
+  getTotals,
+  clearBasket,
+} = basketSlice.actions;
 
-export default cartSlice.reducer;
+export default basketSlice.reducer;

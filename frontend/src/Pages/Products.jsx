@@ -33,7 +33,11 @@ const Products = () => {
       ) : (
         <SimpleGrid columns={3} minChildWidth="30%" py={3}>
           {items.length > 0 ? (
-            items.map((item) => <ItemCard key={item.id} {...item} />)
+            items.map((item) => (
+              <div key={item.id}>
+                <ItemCard {...item} />
+              </div>
+            ))
           ) : (
             <>
               <p>Aucune plante pour le moment :( </p>
