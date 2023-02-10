@@ -26,7 +26,6 @@ exports.login = async (req, res, next) => {
       email: user.email,
       cart: user.cart,
     });
-    console.log(user);
   } catch (error) {
     res.status(500).send({ error });
   }
