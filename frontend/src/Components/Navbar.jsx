@@ -44,7 +44,12 @@ const Navbar = () => {
         fontFamily: "Poppins, sans-serif",
       }}
     >
-      <li></li>
+      <li>
+        {" "}
+        <Box mr={8}>
+          <NavLink to="/">Accueil</NavLink>
+        </Box>
+      </li>
       <li>
         <Box mr={8}>
           <NavLink to="/products">Catalogue produits</NavLink>
