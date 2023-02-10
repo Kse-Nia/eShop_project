@@ -1,4 +1,4 @@
-# Projet EasyPlant !
+# Projet EasyPlant - commerce de plantes en ligne
 
 
 <p align="center">
