@@ -12,7 +12,6 @@ import ItemCard from "../Components/itemCard";
 import { items } from "../items";
 
 const Products = () => {
-  console.log(items);
   const [mobileQuery] = useMediaQuery("(max-width: 900px)");
 
   return (

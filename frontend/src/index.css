@@ -6,6 +6,7 @@
 }
 
 .app {
+  min-height: 100vh;
   background-color: #e4e4e1;
   background-image: radial-gradient(
       at top center,

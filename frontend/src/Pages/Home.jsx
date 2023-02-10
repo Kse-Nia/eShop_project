@@ -1,33 +1,31 @@
 import React from "react";
-import {
-  Container,
-  Card,
-  TableContainer,
-  Heading,
-  Text,
-  Image,
-  ButtonGroup,
-  Button,
-  Box,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Td,
-  Tbody,
-  Tfoot,
-  Alert,
-  AlertIcon,
-  Flex,
-} from "@chakra-ui/react";
+import { Card, Text, Image, Box, Heading } from "@chakra-ui/react";
+import picture from "../Assets/home_back.png";
 
 const Home = () => {
   return (
     <div>
-      <h1>Welcome, Home</h1>
-      <Card>
-        <Text>Bienvenue sur EasyPlant</Text>
-        <Text>Numéro 1 de vente en ligne</Text>
+      <Card m={4} display="flex" flexDirection="row">
+        <Box mt={10} ml={5}>
+          <Heading marginBottom={10} as="h1">
+            Bienvenue sur EasyPlant
+          </Heading>
+          <Text fontSize="lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi
+            tempus iaculis urna id volutpat lacus laoreet non. Enim blandit
+            volutpat maecenas volutpat blandit aliquam etiam.
+          </Text>
+        </Box>
+        <Box>
+          <Image
+            objectFit="cover"
+            maxWidth="1000px"
+            height="auto"
+            src={picture}
+            alt="home"
+          />
+        </Box>
       </Card>
     </div>
   );
