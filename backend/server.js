@@ -24,7 +24,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function main() {
-  /*   const password = "password123";
+  const password = "password123";
   const hash = await bcrypt.hash(password, 10);
 
   const newUser = await prisma.user.create({
@@ -33,7 +33,7 @@ async function main() {
       email: "manon@outlook.com",
       password: hash,
     },
-  }); */
+  });
 }
 main()
   .then(async () => {
