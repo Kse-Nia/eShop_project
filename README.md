@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img width="300" src="/frontend/public/logo-background.png">
+  <img width="300" src="/frontend/public/plant.png">
 </p>
 
 
@@ -25,10 +25,11 @@ Technologies utilisées:
 
 - Cloner le repository
 - Créer une BDD MySQL pour le projet
-- Dans le dossier backend, créer un fichier .env et y inscrire un token d'authentification, le port et l'url de la base de données:
+- Dans le dossier backend, créer un fichier .env et y inscrire un token d'authentification, le port et l'url de la base de données.
+Exemple:
 
 ````
-DATABASE_URL="mysql://kseniya:password@localhost:3306/eShop"
+DATABASE_URL="mysql://root:password@localhost:3306/eShop"
 PORT=8000
 TOKEN_SECRET="dhdfhfo234"
 ````
