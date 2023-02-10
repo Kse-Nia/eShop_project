@@ -5,22 +5,17 @@
   list-style: none;
 }
 
-.css-tl75b3 {
-  margin: 0 !important;
-  overflow: hidden;
-}
-
-.css-nplzzq {
-  margin: 0 !important;
-  overflow: hidden;
-}
-
-.card-container {
-  overflow: hidden;
-  margin: 0 !important;
-}
-
-.css-5f4o2b {
-  margin: 0 !important;
-  overflow: hidden !;
+.app {
+  background-color: #e4e4e1;
+  background-image: radial-gradient(
+      at top center,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(0, 0, 0, 0.03) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(143, 152, 157, 0.6) 100%
+    );
+  background-blend-mode: normal, multiply;
 }

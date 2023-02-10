@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addToBasket } from "../features/basketSlice";
 
 import {
@@ -16,7 +16,6 @@ import {
   Icon,
   Skeleton,
 } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 import { BsCartPlus } from "react-icons/bs";
 
 const ItemCard = (item) => {

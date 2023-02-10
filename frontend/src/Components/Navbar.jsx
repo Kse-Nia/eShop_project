@@ -112,7 +112,7 @@ const Navbar = () => {
   );
 
   return (
-    <Box bg="white" width="100vw">
+    <Box bg="white">
       {mobileVersion ? (
         <Flex display="flex" flexDirection="column">
           <nav>

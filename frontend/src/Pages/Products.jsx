@@ -16,7 +16,7 @@ const Products = () => {
   const [mobileQuery] = useMediaQuery("(max-width: 900px)");
 
   return (
-    <Box m="0" overflow="hidden">
+    <Box m={0} p={0} overflow="hidden">
       <Text fontSize="4xl" textAlign="center" m={8}>
         Plantes disponibles
       </Text>
