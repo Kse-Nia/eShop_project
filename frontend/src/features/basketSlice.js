@@ -62,8 +62,6 @@ const basketSlice = createSlice({
         return state;
       });
     },
-    // Total panier
-
     // Supprimer totalement panier
     clearBasket(state, action) {
       state.cartItems = [];
