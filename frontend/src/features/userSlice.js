@@ -12,7 +12,7 @@ const initialState = {
 };
 
 // Login user
-export const login = createAsyncThunk("/login", async (user, thunkAPI) => {
+export const login = createAsyncThunk("login", async (user, thunkAPI) => {
   try {
     const response = await userService.login(user);
     return response.data;

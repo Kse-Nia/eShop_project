@@ -1,13 +1,5 @@
-import React, { useContext } from "react";
-import {
-  Box,
-  Container,
-  useMediaQuery,
-  Flex,
-  SimpleGrid,
-  Text,
-  Heading,
-} from "@chakra-ui/react";
+import React from "react";
+import { Box, useMediaQuery, SimpleGrid, Text } from "@chakra-ui/react";
 import ItemCard from "../Components/itemCard";
 import { items } from "../items";
 

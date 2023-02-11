@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <Card m={4} display="flex" flexDirection="row">
-        <Box mt={10} ml={5}>
+        <Box mt={10} ml={5} maxW="40%">
           <Heading marginBottom={10} as="h1">
             Bienvenue sur EasyPlant
           </Heading>
@@ -18,13 +18,7 @@ const Home = () => {
           </Text>
         </Box>
         <Box>
-          <Image
-            objectFit="cover"
-            maxWidth="1000px"
-            height="auto"
-            src={picture}
-            alt="home"
-          />
+          <Image objectFit="cover" height="auto" src={picture} alt="home" />
         </Box>
       </Card>
     </div>

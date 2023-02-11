@@ -99,6 +99,14 @@ const Navbar = () => {
               >
                 <NavLink to="/login">Se connecter</NavLink>
               </Button>
+              <Button
+                sx={{ backgroundColor: "#1E643F", color: "white" }}
+                size="sm"
+                mr={1}
+                ml={2}
+              >
+                <NavLink to="/register">S'inscrire</NavLink>
+              </Button>
             </ButtonGroup>
           </li>
         </Box>
